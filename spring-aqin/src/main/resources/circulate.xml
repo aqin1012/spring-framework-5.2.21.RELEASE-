@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.2.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<bean id="beanA" class="com.aqin.custom.circulate.BeanA">
+		<property name="beanB" ref="beanB"></property>
+	</bean>
+	<bean id="beanB" class="com.aqin.custom.circulate.BeanB">
+		<property name="beanA" ref="beanA"></property>
+	</bean>
+	<bean id="myLogger" class="com.aqin.custom.circulate.MyLogger"></bean>
+<!--	<bean id="myLogger2" class="com.aqin.custom.circulate.MyLogger"></bean>-->
+
+	<aop:config>
+		<aop:aspect id="myLogger" ref="myLogger">
+			<aop:pointcut expression="execution(* com.aqin.custom.circulate.*.*(..))" id="method"/>
+			<aop:before method="beforeMethod" pointcut-ref="method"/>
+			<aop:after method="afterMethod" pointcut-ref="method"/>
+		</aop:aspect>
+<!--		<aop:aspect id="myLogger2" ref="myLogger2"></aop:aspect>-->
+	</aop:config>
+</beans>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="dog" class="com.aqin.custom.methodOverride.lookup.Dog" scope="prototype"></bean>
+	<bean id="cat" class="com.aqin.custom.methodOverride.lookup.Cat" scope="prototype"></bean>
+
+	<bean id="animalAction_A" class="com.aqin.custom.methodOverride.lookup.AnimalAction">
+		<lookup-method name="getAnimal" bean="dog"></lookup-method>
+	</bean>
+
+	<bean id="animalAction_B" class="com.aqin.custom.methodOverride.lookup.AnimalAction">
+		<lookup-method name="getAnimal" bean="cat"></lookup-method>
+	</bean>
+
+</beans>

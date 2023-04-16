@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="student" class="com.aqin.custom.factoryMethod.StudentStaticFactory" factory-method="getStudent">
+		<constructor-arg value="aqin"></constructor-arg>
+	</bean>
+
+	<bean id="studentInstanceFactory" class="com.aqin.custom.factoryMethod.StudentInstanceFactory"></bean>
+	<bean id="student2" class="com.aqin.custom.factoryMethod.Student" factory-bean="studentInstanceFactory"
+		  factory-method="getStudent">
+		<constructor-arg value="aqin2"></constructor-arg>
+	</bean>
+
+</beans>
